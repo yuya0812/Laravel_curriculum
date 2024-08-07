@@ -15,6 +15,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PostController;
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -42,3 +44,10 @@ Route::get('/admin', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage', [App\Http\Controllers\UserController::class, 'index'])->name('mypage');
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/confirm/{post}', [PostController::class, 'confirm'])->name('posts.confirm');
+});

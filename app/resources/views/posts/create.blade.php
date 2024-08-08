@@ -55,7 +55,44 @@ function initMap() {
     autocomplete.addListener('place_changed', function() {
         const place = autocomplete.getPlace();
         input.value = place.formatted_address;
+        const latLng = place.geometry.location;
+        map.setCenter(latLng);
+        marker.setPosition(latLng);
     });
+
+    const map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.6895, lng: 139.6917},
+        zoom: 15
+    });
+
+    const marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+    });
+
+    map.addListener('click', function(event) {
+        marker.setPosition(event.latLng);
+        geocodeLatLng(event.latLng);
+    });
+
+    marker.addListener('dragend', function(event) {
+        geocodeLatLng(event.latLng);
+    });
+
+    function geocodeLatLng(latLng) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'location': latLng}, function(results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    input.value = results[0].formatted_address;
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -3,6 +3,9 @@
 @section('title', 'マイページ')
 
 @section('content')
+<div class="container">
     <h1>マイページ</h1>
-    <p>ここにはマイページの情報が表示されます。</p>
+    <a href="{{ route('posts.create') }}" class="btn btn-primary">新規投稿</a>
+    <!-- その他のマイページのコンテンツ -->
+</div>
 @endsection

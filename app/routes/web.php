@@ -29,6 +29,10 @@ Route::get('/gourmet', function () {
     return view('gourmet');
 })->name('gourmet');
 
+Route::get('/event', function () {
+    return view('event');
+})->name('event');
+
 Route::get('/search', function () {
     return view('search');
 })->name('search');
@@ -48,6 +52,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [App\Http\Controllers\UserController::class, 'index'])->name('mypage');
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts/confirm', [PostController::class, 'confirm'])->name('posts.confirm');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-    Route::get('/posts/confirm/{post}', [PostController::class, 'confirm'])->name('posts.confirm');
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 });
+
+
+Route::post('/posts/confirm', [PostController::class, 'confirm'])->name('posts.confirm');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+

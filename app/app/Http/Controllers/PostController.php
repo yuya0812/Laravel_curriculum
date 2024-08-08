@@ -13,6 +13,32 @@ class PostController extends Controller
         return view('posts.create');
     }
 
+    public function confirm(Request $request)
+    {
+        $validated = $request->validate([
+            'category' => 'required|string',
+            'store_name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'comment' => 'required|string|max:250',
+            'genre' => 'nullable|string|max:255',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('temp');
+                $images[] = $path;
+            }
+        }
+
+        $post = $validated;
+        $post['images'] = $images;
+
+        return view('posts.confirm', compact('post'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -44,11 +70,20 @@ class PostController extends Controller
             'images' => $images,
         ]);
 
-        return redirect()->route('posts.confirm', $post);
+        return redirect()->route('mypage')->with('status', '投稿が完了しました。');
+    }
+        public function index()
+    {
+        $posts = Post::with('user')->latest()->paginate(10);
+        return view('posts.index', compact('posts'));
     }
 
-    public function confirm(Post $post)
+    public function show(Post $post)
     {
-        return view('posts.confirm', compact('post'));
+        return view('posts.show' , compact('post'));
     }
 }
+
+
+
+

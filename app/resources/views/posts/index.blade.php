@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', '観光スポット一覧')
+@section('title', '投稿一覧')
 
 @section('content')
 <div class="container">
-    <h1>観光スポット一覧</h1>
+    <h1>投稿一覧</h1>
     <div class="row">
-        @foreach($posts->where('category', '観光スポット') as $post)
+        @foreach($posts as $post)
             <div class="col-md-4">
                 <div class="card mb-4">
                     @if($post->images && count($post->images) > 0)
@@ -18,7 +18,7 @@
                             <small class="text-muted">投稿者: {{ $post->user->name }}</small><br>
                             <small class="text-muted">投稿日時: {{ $post->created_at->format('Y/m/d H:i') }}</small>
                         </p>
-                        <a href="{{ route('posts.show', $post) }}" class="btn btn-primary">詳細を見る</a>
+                        <a href="#" class="btn btn-primary">詳細を見る</a>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 
 <div class="container">
     <h1>新規投稿</h1>
-    <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('posts.confirm') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="category">カテゴリー</label>
@@ -24,6 +24,7 @@
             <label for="location">所在地</label>
             <input type="text" name="location" id="location" class="form-control" required>
         </div>
+        <div id="map" style="height: 400px; width: 100%;"></div>
         <div class="form-group">
             <label for="title">投稿タイトル</label>
             <input type="text" name="title" id="title" class="form-control" required>
@@ -100,3 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endsection
+
+
+
+
+

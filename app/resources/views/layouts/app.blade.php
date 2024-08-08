@@ -44,6 +44,9 @@
                             <a class="nav-link" href="{{ route('gourmet') }}">グルメ</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('event') }}">イベント</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('search') }}">投稿検索</a>
                         </li>
                         <li class="nav-item">

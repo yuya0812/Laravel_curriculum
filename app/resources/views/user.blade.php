@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'ユーザーページ')
+@section('title', 'マイページ')
 
 @section('content')
-    <h1>ユーザー専用ページ</h1>
-    <p>ここにはユーザー専用のコンテンツが表示されます。</p>
+<div class="container">
+    <h1>マイページ</h1>
+    <a href="{{ route('posts.create') }}" class="btn btn-primary">新規投稿</a>
+    <!-- その他のマイページのコンテンツ -->
+</div>
 @endsection

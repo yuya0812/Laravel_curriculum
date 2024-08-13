@@ -114,7 +114,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         // バリデーションと保存処理
         $validated = $this->validatePost($request);
         $images = $this->storeImages($request);
@@ -129,7 +128,6 @@ class PostController extends Controller
             'genre' => $validated['genre'],
             'images' => $images,
         ]);
-        // dd($request->all());
 
         return redirect()->route('posts.index')->with('status', '投稿が完了しました。'); // 修正箇所
     }

@@ -7,12 +7,10 @@
     <h1>投稿確認</h1>
     <form action="{{ route('posts.store') }}" method="POST">
         @csrf
-        <input type="hidden" name="category" value="{{ $post['category'] }}">
-        <input type="hidden" name="store_name" value="{{ $post['store_name'] }}">
-        <input type="hidden" name="location" value="{{ $post['location'] }}">
-        <input type="hidden" name="title" value="{{ $post['title'] }}">
-        <input type="hidden" name="comment" value="{{ $post['comment'] }}">
-        <input type="hidden" name="genre" value="{{ $post['genre'] }}">
+        @foreach(['category', 'store_name', 'location', 'title', 'comment', 'genre'] as $field)
+            <input type="hidden" name="{{ $field }}" value="{{ $post[$field] }}">
+        @endforeach
+
         @foreach($post['images'] as $image)
             <input type="hidden" name="images[]" value="{{ $image }}">
         @endforeach
@@ -43,9 +41,10 @@
         </div>
         <div class="form-group">
             <label>画像:</label>
-            <div>
+            <div class="image-preview">
                 @foreach($post['images'] as $image)
-                    <img src="{{ asset('storage/' . $image) }}" alt="Image" style="max-width: 100px; max-height: 100px;">
+                    <p>{{ $image }}</p>
+                    <img src="{{ asset('temp/' . basename($image)) }}" alt="Uploaded Image" class="preview-image">
                 @endforeach
             </div>
         </div>
@@ -54,3 +53,16 @@
     </form>
 </div>
 @endsection
+
+@push('styles')
+<style>
+    .image-preview {
+        display: flex;
+        gap: 10px;
+    }
+    .preview-image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+</style>
+@endpush

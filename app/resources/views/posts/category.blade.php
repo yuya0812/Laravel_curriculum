@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', '投稿一覧')
+@section('title', $category . 'の投稿一覧')
 
 @section('content')
 <div class="container">
-    <h1>投稿一覧</h1>
+    <h1>{{ $category }}の投稿一覧</h1>
     <div class="row">
-        @foreach($posts as $post)
+        @foreach($posts->take(6) as $post)
             <div class="col-md-4">
                 <div class="card mb-4">
                     @if($post->images && count($post->images) > 0)

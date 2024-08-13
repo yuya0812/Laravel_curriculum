@@ -9,10 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -38,23 +34,25 @@
                             <a class="nav-link" href="{{ route('home') }}">ホーム</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('spots') }}">観光スポット</a>
+                            <a class="nav-link" href="{{ route('posts.category', '観光スポット') }}">観光スポット</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('gourmet') }}">グルメ</a>
+                            <a class="nav-link" href="{{ route('posts.category', 'グルメ') }}">グルメ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('event') }}">イベント</a>
+                            <a class="nav-link" href="{{ route('posts.category', 'イベント') }}">イベント</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('search') }}">投稿検索</a>
+                            <a class="nav-link" href="{{ route('posts.search') }}">投稿検索</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('mypage') }}">マイページ</a>
                         </li>
+                        @if(auth()->check() && auth()->user()->isAdmin())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin') }}">管理者ページ</a>
+                            <a class="nav-link" href="{{ route('admin.users.index') }}">管理者ページ</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,15 +68,24 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

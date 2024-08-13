@@ -3,7 +3,6 @@
 @section('title', '新規投稿')
 
 @section('content')
-
 <div class="container">
     <h1>新規投稿</h1>
     <form action="{{ route('posts.confirm') }}" method="POST" enctype="multipart/form-data">
@@ -24,7 +23,7 @@
             <label for="location">所在地</label>
             <input type="text" name="location" id="location" class="form-control" required>
         </div>
-        <div id="map" style="height: 400px; width: 100%;"></div>
+        <!-- <div id="map" style="height: 400px; width: 100%;"></div> -->
         <div class="form-group">
             <label for="title">投稿タイトル</label>
             <input type="text" name="title" id="title" class="form-control" required>
@@ -43,32 +42,39 @@
         </div>
         <button type="submit" class="btn btn-primary">確認画面へ</button>
     </form>
+    @if ($errors->has('images'))
+    <div class="alert alert-danger">
+        {{ $errors->first('images') }}
+    </div>
+    @endif
 </div>
 @endsection
 
-@section('scripts')
+<!-- @section('scripts')
 <script>
 function initMap() {
     const input = document.getElementById('location');
-    const autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.setFields(['formatted_address']);
-
-    autocomplete.addListener('place_changed', function() {
-        const place = autocomplete.getPlace();
-        input.value = place.formatted_address;
-        const latLng = place.geometry.location;
-        map.setCenter(latLng);
-        marker.setPosition(latLng);
-    });
-
     const map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 35.6895, lng: 139.6917},
+        center: { lat: 35.6895, lng: 139.6917 },
         zoom: 15
     });
 
     const marker = new google.maps.Marker({
         map: map,
         draggable: true,
+    });
+
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.setFields(['formatted_address', 'geometry']);
+
+    autocomplete.addListener('place_changed', function() {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+            const latLng = place.geometry.location;
+            map.setCenter(latLng);
+            marker.setPosition(latLng);
+            input.value = place.formatted_address;
+        }
     });
 
     map.addListener('click', function(event) {
@@ -82,13 +88,9 @@ function initMap() {
 
     function geocodeLatLng(latLng) {
         const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'location': latLng}, function(results, status) {
-            if (status === 'OK') {
-                if (results[0]) {
-                    input.value = results[0].formatted_address;
-                } else {
-                    window.alert('No results found');
-                }
+        geocoder.geocode({ 'location': latLng }, function(results, status) {
+            if (status === 'OK' && results[0]) {
+                input.value = results[0].formatted_address;
             } else {
                 window.alert('Geocoder failed due to: ' + status);
             }
@@ -96,12 +98,10 @@ function initMap() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initMap();
-});
+document.addEventListener('DOMContentLoaded', initMap);
 </script>
 @endsection
-
+ -->
 
 
 

@@ -7,7 +7,6 @@ services:
   nginx:
     # コンテナ名指定
     container_name: curriculum-nginx
-    platform: linux/amd64
     # 使用イメージの指定
     image: nginx:latest
     # 同期ファイルの指定
@@ -25,9 +24,8 @@ services:
     container_name: curriculum-laravel
     ###############################################################
     # Mac M1チップユーザーは以下のコメントアウトを解除して作業を進めてください
-    # platform: linux/x86_64
-    platform: linux/amd64
-    ##############################################################
+    platform: linux/x86_64
+    ###############################################################
     
     # どれを使ってビルド(コンテナ立ち上げを行うか)
     build:
@@ -46,7 +44,6 @@ services:
 
   db:
     container_name: curriculum-db
-    platform: linux/amd64
     image: mysql:5.7
     # コンテナの環境変数を指定
     environment:
@@ -60,7 +57,6 @@ services:
 
   phpMyAdmin:
     image: phpmyadmin/phpmyadmin
-    platform: linux/amd64
     environment:
       - PMA_PARBIRARY=1
       - PMA_HOST=db

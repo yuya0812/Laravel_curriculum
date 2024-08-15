@@ -1,9 +1,6 @@
 
 
-
-
 function like(postId) {
-    console.log("動いてる？")
     $.ajax({
       headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -35,6 +32,4 @@ function unlike(postId) {
       })
   }
 
-
-
-  require('./bootstrap');
+  // console.log("動いてる？")

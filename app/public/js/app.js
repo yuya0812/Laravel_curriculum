@@ -37102,6 +37102,33 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function like(postId) {
+  console.log("動いてる？");
+  $.ajax({
+    headers: {
+      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+    },
+    url: "/like/".concat(postId),
+    type: "POST"
+  }).done(function (data, status, xhr) {
+    console.log(data);
+  }).fail(function (xhr, status, error) {
+    console.log();
+  });
+}
+function unlike(postId) {
+  $.ajax({
+    headers: {
+      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+    },
+    url: "/unlike/".concat(postId),
+    type: "POST"
+  }).done(function (data, status, xhr) {
+    console.log(data);
+  }).fail(function (xhr, status, error) {
+    console.log();
+  });
+}
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),

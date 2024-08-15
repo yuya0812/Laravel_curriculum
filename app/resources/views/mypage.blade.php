@@ -11,15 +11,15 @@
     <br><br>
     <a href="{{ route('posts.index') }}" class="btn btn-primary">投稿一覧</a>
     <br><br>
-    <a href="{{ route('posts.category', 'グルメ') }}" class="btn btn-primary">自分のグルメの投稿一覧</a>
-    <a href="{{ route('posts.category', '観光スポット') }}" class="btn btn-primary">自分の観光スポットの投稿一覧</a>
-    <a href="{{ route('posts.category', 'イベント') }}" class="btn btn-primary">自分のイベントの投稿一覧</a>
+    <a href="{{ route('posts.myCategory', 'グルメ') }}" class="btn btn-primary">自分のグルメの投稿一覧</a>
+<a href="{{ route('posts.myCategory', '観光スポット') }}" class="btn btn-primary">自分の観光スポットの投稿一覧</a>
+<a href="{{ route('posts.myCategory', 'イベント') }}" class="btn btn-primary">自分のイベントの投稿一覧</a>
     <br><br>
 
     <!-- 自分のグルメ投稿 -->
     <h2>自分のグルメ投稿</h2>
     <div class="row">
-        @foreach($gourmetPosts as $post)
+        @forelse($gourmetPosts as $post)
             <div class="col-md-4">
                 <div class="card mb-4">
                     @if($post->images && count($post->images) > 0)
@@ -38,13 +38,15 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p>グルメの投稿がありません。</p>
+        @endforelse
     </div>
 
     <!-- 自分の観光スポット投稿 -->
     <h2>自分の観光スポット投稿</h2>
     <div class="row">
-        @foreach($spotPosts as $post)
+        @forelse($spotPosts as $post)
             <div class="col-md-4">
                 <div class="card mb-4">
                     @if($post->images && count($post->images) > 0)
@@ -63,13 +65,15 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p>観光スポットの投稿がありません。</p>
+        @endforelse
     </div>
 
     <!-- 自分のイベント投稿 -->
     <h2>自分のイベント投稿</h2>
     <div class="row">
-        @foreach($eventPosts as $post)
+        @forelse($eventPosts as $post)
             <div class="col-md-4">
                 <div class="card mb-4">
                     @if($post->images && count($post->images) > 0)
@@ -88,7 +92,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p>イベントの投稿がありません。</p>
+        @endforelse
     </div>
 </div>
 @endsection

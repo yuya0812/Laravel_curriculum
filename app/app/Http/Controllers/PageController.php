@@ -33,7 +33,21 @@ class PageController extends Controller
 
     public function mypage()
     {
-        return view('mypage');
+        $userId = Auth::id(); // 現在のユーザーIDを取得
+    
+        $gourmetPosts = Post::where('user_id', $userId)
+                            ->where('category', 'グルメ')
+                            ->get();
+    
+        $spotPosts = Post::where('user_id', $userId)
+                         ->where('category', '観光スポット')
+                         ->get();
+    
+        $eventPosts = Post::where('user_id', $userId)
+                          ->where('category', 'イベント')
+                          ->get();
+    
+        return view('mypage', compact('gourmetPosts', 'spotPosts', 'eventPosts'));
     }
 
     public function admin()

@@ -31,11 +31,13 @@
         <p><strong>投稿者:</strong> {{ $post->user->name }}</p>
         <p><strong>投稿日時:</strong> {{ $post->created_at->format('Y/m/d H:i') }}</p>
     </div>
-</div>
-@endsection
+   
+    <button onclick="like({{$post->id}})">いいね</button>
+    
+    <button onclick="unlike({{$post->id}})">いいね解除</button>
 
-@section('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <p id="like-count">{{ $post->likes()->count() }} いいね</p>
+
+
+    </div>
 @endsection

@@ -7,13 +7,30 @@
     <h1>投稿検索</h1>
     <form action="{{ route('posts.search') }}" method="GET">
         <div class="form-group">
-            <input type="text" name="query" class="form-control" placeholder="検索キーワードを入力">
+            <input type="text" name="query" class="form-control" placeholder="検索キーワードを入力" value="{{ request('query') }}">
+        </div>
+        <div class="form-group">
+            <select name="category" class="form-control">
+                <option value="">カテゴリーを選択</option>
+                <option value="グルメ" {{ request('category') == 'グルメ' ? 'selected' : '' }}>グルメ</option>
+                <option value="観光スポット" {{ request('category') == '観光スポット' ? 'selected' : '' }}>観光スポット</option>
+                <option value="イベント" {{ request('category') == 'イベント' ? 'selected' : '' }}>イベント</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" name="user" class="form-control" placeholder="投稿者名を入力" value="{{ request('user') }}">
+        </div>
+        <div class="form-group">
+            <input type="date" name="date_from" class="form-control" value="{{ request('date_from') }}">
+        </div>
+        <div class="form-group">
+            <input type="date" name="date_to" class="form-control" value="{{ request('date_to') }}">
         </div>
         <button type="submit" class="btn btn-primary">検索</button>
     </form>
 
     @if(isset($posts) && $posts->isNotEmpty())
-        <div class="container">
+        <div class="container mt-4">
             <h1>投稿一覧</h1>
             <div class="row">
                 @foreach($posts as $post)
@@ -39,7 +56,7 @@
             {{ $posts->links() }}
         </div>
     @else
-        <p>該当する投稿が見つかりませんでした。</p>
+        <p class="mt-4">該当する投稿が見つかりませんでした。</p>
     @endif
 </div>
 @endsection

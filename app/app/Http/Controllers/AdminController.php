@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/AdminController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,6 +10,6 @@ class AdminController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.index', compact('posts'));
+        return view('admin.users.index', compact('posts'));
     }
 }

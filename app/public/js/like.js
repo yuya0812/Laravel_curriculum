@@ -9,6 +9,7 @@ function like(postId) {
       type: "POST",
     })
       .done(function (data, status, xhr) {
+        updateLikeCount(postId);
         console.log(data)
       })
       .fail(function (xhr, status, error) {
@@ -25,11 +26,14 @@ function unlike(postId) {
       type: "POST",
     })
       .done(function (data, status, xhr) {
+        updateLikeCount(postId);
         console.log(data)
       })
       .fail(function (xhr, status, error) {
         console.log()
       })
   }
+
+  
 
   // console.log("動いてる？")

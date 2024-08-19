@@ -84,6 +84,6 @@ Route::post('/like/{postId}',[LikeController::class,'store']);
 
 Route::post('/unlike/{postId}',[LikeController::class,'destroy']);
 
-
+Route::get('/like-count/{postId}', [LikeController::class, 'getLikeCount']);
 
 

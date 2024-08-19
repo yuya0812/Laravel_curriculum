@@ -10,14 +10,23 @@ use Illuminate\Support\Facades\Auth;
 class LikeController extends Controller
 {
     public function store($postId)
-    {
-        Auth::user()->like($postId);
-        return 'ok!'; //レスポンス内容
-    }
+{
+    Auth::user()->like($postId);
+    $post = Post::find($postId); // 投稿を取得
+    return response()->json(['like_count' => $post->likes()->count()]);
+}
 
-    public function destroy($postId)
+public function destroy($postId)
+{
+    Auth::user()->unlike($postId);
+    $post = Post::find($postId); // 投稿を取得
+    return response()->json(['like_count' => $post->likes()->count()]);
+}
+    public function getLikeCount($postId)
     {
-        Auth::user()->unlike($postId);
-        return 'ok!'; //レスポンス内容
+        $post = Post::findOrFail($postId);
+        $likeCount = $post->likes()->count();
+        
+        return response()->json(['likeCount' => $likeCount]);
     }
 }

@@ -9,7 +9,7 @@ function like(postId) {
       type: "POST",
     })
       .done(function (data, status, xhr) {
-        updateLikeCount(postId);
+        $('#like-count').text(data.like_count + ' いいね');
         console.log(data)
       })
       .fail(function (xhr, status, error) {
@@ -26,13 +26,27 @@ function unlike(postId) {
       type: "POST",
     })
       .done(function (data, status, xhr) {
-        updateLikeCount(postId);
+        $('#like-count').text(data.like_count + ' いいね');
         console.log(data)
       })
       .fail(function (xhr, status, error) {
         console.log()
       })
   }
+
+  function updateLikeCount(postId) {
+    $.ajax({
+        url: `/like-count/${postId}`,
+        type: "GET",
+        success: function (data) {
+            // サーバーからのレスポンスでいいね数を更新
+            $(`#like-count-${postId}`).text(data.likeCount + ' いいね');
+        },
+        error: function (xhr, status, error) {
+            console.log('Error:', error);
+        }
+    });
+}
 
   
 

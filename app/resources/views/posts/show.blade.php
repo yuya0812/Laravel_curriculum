@@ -35,6 +35,17 @@
     <button onclick="unlike({{$post->id}})">いいね解除</button>
 
     <p id="like-count">{{ $post->likes()->count() }} いいね</p>
+
+    @if(Auth::check() && (Auth::user()->isAdmin() || Auth::user()->id == $post->user_id))
+        <div class="mt-4">
+            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">編集</a>
+            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">削除</button>
+            </form>
+        </div>
+    @endif
     
     </div>
 @endsection

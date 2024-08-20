@@ -49,7 +49,7 @@
             <div class="mt-2">
                 <p>現在の画像:</p>
                 @if ($post->images)
-                    @foreach (json_decode($post->images, true) as $image)
+                    @foreach ($post->images as $image)
                         <img src="{{ asset('/' . $image) }}" alt="現在の画像" style="width: 150px; height: auto;">
                     @endforeach
                 @endif

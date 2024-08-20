@@ -20,8 +20,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 
-Route::post('/like/{postId}',[LikeController::class,'store']);
-Route::post('/unlike/{postId}',[LikeController::class,'destroy']);
+
 
 Route::get('/posts/search', [PostController::class, 'search'])->name('posts.search');
 
@@ -39,7 +38,6 @@ Route::get('/search', [PageController::class, 'searchPage'])->name('search');
 Route::get('/admin', [PageController::class, 'admin'])->name('admin');
 
 // 投稿関連ルート
-// Route::resource('posts', PostController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::post('/posts/{post}/update', [PostController::class, 'update'])->name('posts.update');
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
@@ -85,5 +83,4 @@ Route::post('/like/{postId}',[LikeController::class,'store']);
 Route::post('/unlike/{postId}',[LikeController::class,'destroy']);
 
 Route::get('/like-count/{postId}', [LikeController::class, 'getLikeCount']);
-
 

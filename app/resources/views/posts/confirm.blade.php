@@ -40,7 +40,6 @@
             <label>画像:</label>
             <div class="image-preview">
                 @foreach($post['images'] as $image)
-                <p>{{ $image }}</p>
                     <img src="{{ asset('temp/' . basename($image)) }}" alt="Uploaded Image" class="preview-image">
                 @endforeach
             </div>

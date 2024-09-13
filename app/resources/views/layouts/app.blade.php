@@ -10,6 +10,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Googleマップ -->
+    <script src="/js/map.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -93,12 +96,17 @@
             @yield('content')
         </main>
     </div>
+
+<!-- Googleマップ -->
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtcHJf1h5g5mS31x-vgRCNrmWqzD1eUV0&callback=initMap">
+    </script>  
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('js/like.js') }}" defer></script>
 
-    <!-- Googleマップ -->
-    <script src="http://maps.google.com/maps/api/js?key={AIzaSyCtcHJf1h5g5mS31x-vgRCNrmWqzD1eUV0}&language=ja"></script>
-
+    
+    
 
 </body>
 </html>

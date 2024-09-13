@@ -26,10 +26,8 @@
         </div> -->
 
         <!-- Googleマップ -->
-        <label for="store_name">住所</label>
-        <br>
-        <input id="address" type="text" placeholder="住所を入力してください" />
-        <button onclick="geocodeAddress()">検索</button>
+        <input id="search-box" type="text" placeholder="住所を入力">
+        <button id="search-button">検索</button>
          
         
         <div id="map" style="height: 400px; width: 100%;"></div>

@@ -96,5 +96,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('js/like.js') }}" defer></script>
 
+    <!-- Googleマップ -->
+    <script src="http://maps.google.com/maps/api/js?key={AIzaSyCtcHJf1h5g5mS31x-vgRCNrmWqzD1eUV0}&language=ja"></script>
+
+
 </body>
 </html>

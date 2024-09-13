@@ -20,11 +20,21 @@
             <label for="store_name">店名</label>
             <input type="text" name="store_name" id="store_name" class="form-control" required>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="location">所在地</label>
             <input type="text" name="location" id="location" class="form-control" required>
-        </div>
-         <!-- <div id="map" style="height: 400px; width: 100%;"></div> -->
+        </div> -->
+
+        <!-- Googleマップ -->
+        <label for="store_name">住所</label>
+        <br>
+        <input id="address" type="text" placeholder="住所を入力してください" />
+        <button onclick="geocodeAddress()">検索</button>
+         
+        
+        <div id="map" style="height: 400px; width: 100%;"></div>
+        <!-- Googleマップ終わり -->
+
          <div class="form-group">
             <label for="title">投稿タイトル</label>
             <input type="text" name="title" id="title" class="form-control" required>

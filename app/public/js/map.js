@@ -1,68 +1,32 @@
-// // var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
-// // var Options = {
-// //  zoom: 15,      //地図の縮尺値
-// //  center: MyLatLng,    //地図の中心座標
-// //  mapTypeId: 'roadmap'   //地図の種類
-// // };
-// // var map = new google.maps.Map(document.getElementById('map'), Options);
-
-
-// let map;
-//         let marker;
-
-//         function initMap() {
-//             const defaultLocation = { lat: 35.681236, lng: 139.767125 }; // デフォルトは東京駅の座標
-//             map = new google.maps.Map(document.getElementById('map'), {
-//                 center: defaultLocation,
-//                 zoom: 15
-//             });
-
-//             marker = new google.maps.Marker({
-//                 position: defaultLocation,
-//                 map: map
-//             });
-//         }
-
-//         function geocodeAddress() {
-//             const address = document.getElementById('address').value;
-//             const geocoder = new google.maps.Geocoder();
-
-//             geocoder.geocode({ 'address': address }, function(results, status) {
-//                 if (status === 'OK') {
-//                     map.setCenter(results[0].geometry.location);
-//                     marker.setPosition(results[0].geometry.location);
-//                 } else {
-//                     alert('Geocode was not successful for the following reason: ' + status);
-//                 }
-//             });
-//         }
-
-
-
-// --------------------
-
 
 let map;
 let marker;
+var geocoder;
 
 async function initMap() {
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
+  
+  geocoder = new google.maps.Geocoder();
+  
+  const initialLatLng = { lat: 36.0652, lng: 136.2216 };
+
 
   map = new Map(document.getElementById("map"), {
-    center: { lat: 35.681236, lng: 139.767125 },
+    center: initialLatLng,
     zoom: 14,
   });
   // 初期のピン（マップを初期化したとき）
   marker = new google.maps.Marker({
-    position: center,
+    position: initialLatLng,
     map: map,
+    draggable: true // マーカーをドラッグ可能に
   });
+
+
   document.getElementById("search-button").addEventListener("click", function () {
-    const address = document.getElementById("search-box").value;
-    if (address) {
-        geocodeAddress(address);
-    }
+        const address = document.getElementById("search-box").value;
+        if (address) {
+            geocodeAddress(address);
+      }
   });
 }
 

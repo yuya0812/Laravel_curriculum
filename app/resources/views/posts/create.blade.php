@@ -26,8 +26,18 @@
         </div> -->
 
         <!-- Googleマップ -->
-        <input id="search-box" type="text" placeholder="住所を入力">
-        <button id="search-button">検索</button>
+        <label>郵便番号:</label>
+        <input id="postal-code" type="text" placeholder="郵便番号">
+        <br>
+        <label>都道府県:</label>
+        <input id="prefecture" type="text" placeholder="都道府県">
+        <br>
+        <label>市区町村:</label>
+        <input id="city" type="text" placeholder="市区町村">
+        <br>
+        <label>その他  :</label>
+        <input id="other" type="text" placeholder="マンション名やビル名など">
+        <br>
          
         
         <div id="map" style="height: 400px; width: 100%;"></div>

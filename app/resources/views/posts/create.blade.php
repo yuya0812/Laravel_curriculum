@@ -49,7 +49,7 @@
             <input type="text" name="genre" id="genre" class="form-control">
         </div>
         <div class="form-group">
-            <label for="images">画像 (最大10枚)</label>
+            <label for="images">画像</label>
             <input type="file" name="images[]" id="images" class="form-control" multiple>
         </div>
         <button type="submit" class="btn btn-primary">確認画面へ</button>

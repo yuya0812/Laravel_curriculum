@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-group">
-            <label for="images">画像 (最大10枚)</label>
+            <label for="images">画像 </label>
             <input type="file" name="images[]" id="images" class="form-control" multiple>
             <div class="mt-2">
                 <p>現在の画像:</p>

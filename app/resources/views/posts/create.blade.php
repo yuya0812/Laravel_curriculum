@@ -26,18 +26,11 @@
         </div> -->
 
         <!-- Googleマップ -->
-        <label>郵便番号:</label>
-        <input id="postal-code" type="text" placeholder="郵便番号">
-        <br>
-        <label>都道府県:</label>
-        <input id="prefecture" type="text" placeholder="都道府県">
-        <br>
-        <label>市区町村:</label>
-        <input id="city" type="text" placeholder="市区町村">
-        <br>
-        <label>その他  :</label>
-        <input id="other" type="text" placeholder="マンション名やビル名など">
-        <br>
+        <div class="form-group">
+        <label for="location">市区町村・番地:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><strong>福井県</strong></u></label>
+       <input type="text" name="location" id="location" class="form-control" required placeholder="住所を入力してください">
+        <button id="search-button">住所で検索</button>
+        
          
         
         <div id="map" style="height: 400px; width: 100%;"></div>
